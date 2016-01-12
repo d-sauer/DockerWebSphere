@@ -1,0 +1,15 @@
+<server description="default servlet engine">
+    
+    <featureManager>
+        <feature>servlet-3.0</feature>
+        <feature>javaee-7.0</feature>
+    </featureManager>
+    
+    <httpEndpoint id="defaultHttpEndpoint"
+		  		  host="*"
+                  httpPort="9080"
+                  httpsPort="9443" />
+
+    <application id="auditing" location="auditing.war" name="auditing" />
+   
+</server>

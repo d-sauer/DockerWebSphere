@@ -1,0 +1,12 @@
+db:
+  image: registry.backbase.com/mysql:latest
+  hostname: db
+  ports:
+    - "3306:3306"
+
+websphere:
+  image: registry.backbase.com/websphere-base
+  hostname: websphere
+  ports:
+    - "9080:9080"
+    - "9443:9443"
