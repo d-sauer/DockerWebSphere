@@ -1,1 +1,10 @@
 -Ddefault.client.encoding=UTF-8
+
+# Set a system property.
+#-Dcom.ibm.example.system.property=ExampleValue
+
+# Enable verbose output for class loading.
+#-verbose:class
+
+# Enable remote debug
+-Xrunjdwp:transport=dt_socket,address=7777,server=y,suspend=n

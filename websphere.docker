@@ -7,5 +7,3 @@ ADD ./config/jvm.options /config/
 ADD ./dropins/* /config/dropins/
 
 RUN /opt/ibm/wlp/bin/installUtility install --acceptLicense defaultServer  && rm -rf /opt/ibm/wlp/usr/servers/defaultServer/workarea
-
-#RUN /opt/ibm/wlp/bin/installUtility install adminCenter-1.0 --acceptLicense defaultServer
