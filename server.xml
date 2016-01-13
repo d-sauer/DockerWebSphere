@@ -3,6 +3,7 @@
     <featureManager>
         <feature>servlet-3.0</feature>
         <feature>javaee-7.0</feature>
+        <feature>jndi-1.0</feature>
     </featureManager>
     
     <httpEndpoint id="defaultHttpEndpoint"
@@ -12,4 +13,8 @@
 
     <application id="auditing" location="auditing.war" name="auditing" />
    
+    <jndiEntry jndiName="backbase/auditing-config" value="/config/dropins/auditing.properties" />
+
+    <jndiEntry jndiName="backbase/gateway-config" value="/config/dropins/gateway.properties" />
+
 </server>
