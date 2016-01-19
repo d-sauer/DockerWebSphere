@@ -1,13 +1,36 @@
-#db:
-#  image: registry.backbase.com/mysql:latest
-#  hostname: db
-#  ports:
-#    - "3306:3306"
+db:
+  image: registry.backbase.com/mysql:latest
+  hostname: db
+  ports:
+    - "3306:3306"
+
+registry:
+  image: registry.backbase.com/registry-tomcat
+  hostname: registry
+  ports:
+    - "8761:8080"
+  links:
+    - db
+
+eventbus:
+  image: registry.backbase.com/eventbus-tomcat:release
+  hostname: eventbus
+  ports:
+    - "61616:61616"
+    - "9091:8080"
+    - "1099:1099"
+  links:
+    - db
+    - registry
 
 websphere:
-  image: registry.backbase.com/websphere-base:latest
+  image: websphere-base
   hostname: websphere
   ports:
     - "9080:9080"
     - "9443:9443"
     - "7777:7777"
+  links:
+    - db
+    - eventbus
+    - registry

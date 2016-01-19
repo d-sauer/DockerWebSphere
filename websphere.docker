@@ -1,9 +1,16 @@
-# https://hub.docker.com/_/websphere-liberty/
+# https://hub.docker.com/_/websphere-liberty
 
 FROM websphere-liberty:webProfile7
 
-ADD ./config/server.xml /config/
-ADD ./config/jvm.options /config/
-ADD ./dropins/* /config/dropins/
+ADD ./config/* /config/
+ADD ./dropins/*.war /config/dropins/
+
+RUN mkdir /jars
+ADD ./jars/*.jar /jars/
+
+RUN mkdir /war
+ADD ./war/*.war /war/
+
 
 RUN /opt/ibm/wlp/bin/installUtility install --acceptLicense defaultServer  && rm -rf /opt/ibm/wlp/usr/servers/defaultServer/workarea
+#RUN /opt/ibm/wlp/bin/installUtility install --acceptLicense defaultServer

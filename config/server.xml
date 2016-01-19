@@ -1,9 +1,10 @@
+<!-- knownt tags: https://www-01.ibm.com/support/knowledgecenter/SSEQTJ_8.5.5/com.ibm.websphere.wlp.doc/autodita/rwlp_metatype_4ic.html-->
 <server description="default servlet engine">
     <!-- 2 -->
     <featureManager>
         <feature>servlet-3.0</feature>
         <feature>jndi-1.0</feature>
-        <feature>adminCenter-1.0</feature>
+        <!-- <feature>adminCenter-1.0</feature> -->
     </featureManager>
 
     <httpEndpoint host="*" httpPort="9080" httpsPort="9443" id="defaultHttpEndpoint"/>
@@ -25,7 +26,19 @@
         <writeDir>${server.config.dir}</writeDir>
     </remoteFileAccess>
 
-    <jndiEntry jndiName="backbase/auditing-config" value="/config/dropins/auditing.properties"/>
+    <logging consoleLogLevel="INFO"/>
 
-    <jndiEntry jndiName="java:comp/env/backbase/gateway-config" value="/config/dropins/gateway.properties"/>
+    <library id="ExternalJars">
+      <fileset dir="/jars" includes="*.jar"/>
+    </library>
+    
+    <jndiEntry jndiName="backbase/gateway-config" value="/config/gateway.properties"/>
+
+    <jndiEntry jndiName="backbase/auditing-config" value="/config/auditing.yml"/>
+
+    <application id="auditing" name="auditing" type="war" location="/war/auditing.war">
+      <classloader commonLibraryRef="ExternalJars" />
+    </application>
+
+
 </server>
